@@ -1,9 +1,6 @@
 <template>
-    <router-view>
-      
-    </router-view>
     <header>
-  
+      Not found page
     </header>
   
     <main>

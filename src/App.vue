@@ -1,19 +1,18 @@
 <template>
-  <router-view>
-    
-  </router-view>
-  <header>
-    FIND A DEV VUE APP
-  </header>
-
-  <main>
-
-  </main>
+  <the-header></the-header>
+  <router-view></router-view>
 </template>
 
-<script setup>
+<script>
+import TheHeader from './components/layout/TheHeader.vue';
+
+export default {
+  components: {
+    TheHeader
+  }
+}
 </script>
 
-<style scoped>
+<style>
 
 </style>
