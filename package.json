@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview --port 4173"
+    "preview": "vite preview --port 4173",
+    "deploy": "sh deploy.sh"
   },
   "dependencies": {
     "vue": "^3.2.38",
@@ -13,6 +14,8 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.2.0",
+    "eslint": "^8.26.0",
+    "eslint-plugin-vue": "^9.7.0",
     "sass": "^1.55.0",
     "sass-loader": "^10.3.1",
     "vite": "^3.0.9"
