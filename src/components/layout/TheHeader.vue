@@ -8,8 +8,8 @@
             </h1>
             <ul>
                 <li>
-                    <router-link to="/FindADevVueApp/devs">All DEVs</router-link>
-                    <router-link to="/FindADevVueApp/requests">All requests</router-link>
+                    <router-link to="/devs">All DEVs</router-link>
+                    <router-link to="/requests">All requests</router-link>
                 </li>
             </ul>
         </nav>
