@@ -10,14 +10,15 @@ import NotFound from './pages/NotFound.vue';
 
 const router = createRouter({
     history: createWebHistory(),
+    base: '/FindADevVueApp',
     routes: [
-        { path: '/', redirect: '/devs'}, // baseRoute
-        { path: '/devs', component: DevList },
-        { path: '/devs/:id', component: DevDetail, children: [
+        { path: '/FindADevVueApp', redirect: '/FindADevVueApp/devs'}, // baseRoute
+        { path: '/FindADevVueApp/devs', component: DevList },
+        { path: '/FindADevVueApp/devs/:id', component: DevDetail, children: [
             { path: 'contact', component: DevContact }, // /devs/id/contact
         ]},
-        { path: '/register', component: DevRegistration },
-        { path: '/requests', component: DevRequests },
+        { path: '/FindADevVueApp/register', component: DevRegistration },
+        { path: '/FindADevVueApp/requests', component: DevRequests },
 
         { path: '/:notFound(.*)', component:NotFound } // not found route
     ],
