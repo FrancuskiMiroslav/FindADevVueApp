@@ -7,7 +7,7 @@
             <button class="button">
                 Refresh
             </button>
-            <router-link to="/FindADevVueApp/register" class="button">
+            <router-link to="/register" class="button">
                 Register as DEV
             </router-link>
         </div>
