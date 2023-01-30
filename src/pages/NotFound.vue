@@ -9,7 +9,7 @@
     <main>
   
     </main>
-  </template>
+</template>
   
   <script setup>
   </script>
