@@ -39,3 +39,6 @@ coverage
 #######################################################
 *.xd
 *.fig
+
+# Local Netlify folder
+.netlify

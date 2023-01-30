@@ -16,6 +16,7 @@
     "@vitejs/plugin-vue": "^3.2.0",
     "eslint": "^8.26.0",
     "eslint-plugin-vue": "^9.7.0",
+    "netlify-cli": "^12.10.0",
     "sass": "^1.55.0",
     "sass-loader": "^10.3.1",
     "vite": "^3.0.9"
