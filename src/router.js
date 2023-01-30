@@ -9,7 +9,7 @@ import DevRequests from './pages/requests/DevRequests.vue';
 import NotFound from './pages/NotFound.vue';
 
 const router = createRouter({
-    history: createWebHistory('/find-a-dev-vue-app.netlify.app/'),
+    history: createWebHistory(),
     routes: [
         { path: '/', redirect: '/devs'}, // baseRoute
         { path: '/devs', component: DevList },
