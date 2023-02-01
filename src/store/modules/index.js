@@ -12,7 +12,7 @@ export default {
                   lastName: 'Francuski',
                   areas: ['frontend', 'career'],
                   description:
-                    "I'm Maximilian and I've worked as a freelance web developer for years. Let me help you become a developer as well!",
+                    "I'm Miroslav and I am a self-taught web developer with a flair for creating elegant solutions in the least amount of time. I feel most comfortable when I am coding from scratch.",
                   hourlyRate: 30
                 },
                 {
@@ -21,7 +21,7 @@ export default {
                   lastName: 'Doe',
                   areas: ['frontend', 'backend', 'career'],
                   description:
-                    'I am Julie and as a senior developer in a big tech company, I can help you get your first job or progress in your current role.',
+                    'I am Jane and as a senior developer in a big tech company. Looking for a fully remote position.',
                   hourlyRate: 30
                 }
               ]

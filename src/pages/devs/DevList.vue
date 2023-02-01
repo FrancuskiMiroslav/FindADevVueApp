@@ -3,25 +3,27 @@
         Filter
     </section>
     <section>
-        <div class="controls">
-            <button class="button">
-                Refresh
-            </button>
-            <router-link to="/register" class="button">
-                Register as DEV
-            </router-link>
-        </div>
-        <ul v-if="hasDevs">
-            <dev-item v-for="dev in filteredDevs" 
-                :key="dev.id"
-                :id="dev.id"
-                :first-name="dev.firstName"
-                :last-name="dev.lastName"
-                :rate="dev.hourlyRate"
-                :areas="dev.areas"
-            ></dev-item>
-        </ul>
-        <h3 v-else>No DEVs found.</h3>
+        <base-card>
+            <div class="controls">
+                <base-button mode="button">
+                    Refresh
+                </base-button>
+                <base-button link to="/register" mode="button-two">
+                    Register as DEV
+                </base-button>
+            </div>
+            <ul v-if="hasDevs">
+                <dev-item v-for="dev in filteredDevs" 
+                    :key="dev.id"
+                    :id="dev.id"
+                    :first-name="dev.firstName"
+                    :last-name="dev.lastName"
+                    :rate="dev.hourlyRate"
+                    :areas="dev.areas"
+                ></dev-item>
+            </ul>
+            <h3 v-else>No DEVs found.</h3>
+        </base-card>
     </section>
 </template>
 
