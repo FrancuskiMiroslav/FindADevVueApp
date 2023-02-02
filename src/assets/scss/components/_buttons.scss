@@ -203,3 +203,23 @@
 	transform: rotate(-90deg);
 	background-color: red;
 }
+
+
+//// filter checkboxes
+.filter-option {
+  margin-right: 1rem;
+}
+
+.filter-option label,
+.filter-option input {
+  vertical-align: middle;
+}
+
+.filter-option label {
+  margin-left: 0.25rem;
+}
+
+.filter-option.active label {
+  font-weight: bold;
+  color: $primaryClr;
+}

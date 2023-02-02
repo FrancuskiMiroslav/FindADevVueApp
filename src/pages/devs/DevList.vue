@@ -1,6 +1,6 @@
 <template>
     <section>
-        Filter
+        <dev-filter @change-filter="setFilters"></dev-filter>
     </section>
     <section>
         <base-card>
@@ -28,18 +28,50 @@
 </template>
 
 <script>
-import DevItem from '../../components/DevItem.vue'
+import DevItem from '../../components/DevItem.vue';
+import DevFilter from '../../components/DevFilter.vue';
 
 export default {
     components: {
-        DevItem
+        DevItem,
+        DevFilter
+    },
+    data() {
+        return {
+            activeFilters: {
+                frontend: true,
+                backend: true,
+                career: true,
+                activeClass: 'true',
+            }
+        }
     },
     computed: {
         filteredDevs() {
-            return this.$store.getters.data;
+            const devs = this.$store.getters.data;
+            return devs.filter(dev => {
+                if(this.activeFilters.frontend && dev.areas.includes('frontend')) {
+                    return true
+                }
+
+                if(this.activeFilters.backend && dev.areas.includes('backend')) {
+                    return true
+                }
+
+                if(this.activeFilters.career && dev.areas.includes('career')) {
+                    return true
+                }
+
+                return false;
+            })
         },
         hasDevs() {
             return this.$store.getters.hasData;
+        }
+    },
+    methods: {
+        setFilters(updatedFilters) {
+            this.activeFilters = updatedFilters;
         }
     }
 }
