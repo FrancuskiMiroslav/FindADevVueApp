@@ -41,9 +41,8 @@ export default {
             activeFilters: {
                 frontend: true,
                 backend: true,
-                career: true,
-                activeClass: 'true',
-            }
+                fullstack: true,
+            },
         }
     },
     computed: {
@@ -58,7 +57,7 @@ export default {
                     return true
                 }
 
-                if(this.activeFilters.career && dev.areas.includes('career')) {
+                if(this.activeFilters.fullstack && dev.areas.includes('fullstack')) {
                     return true
                 }
 

@@ -37,7 +37,7 @@ export default {
   color: white;
 }
 
-.career {
+.fullstack {
   background-color: #8d006e;
   color: white;
 }

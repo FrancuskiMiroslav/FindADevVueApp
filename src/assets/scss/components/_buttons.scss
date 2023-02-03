@@ -217,9 +217,13 @@
 
 .filter-option label {
   margin-left: 0.25rem;
+  padding: 5px;
+  border: 1px solid #ffffff;
 }
 
 .filter-option.active label {
-  font-weight: bold;
-  color: $primaryClr;
+  color: $secondaryClr;
+  border: 1px solid $secondaryClr;
+  background-color: $primaryClr;
+
 }
