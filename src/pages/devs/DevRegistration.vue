@@ -62,8 +62,9 @@ export default {
           areas: this.areas
         };
 
-        console.log(formData)
-      }
+        this.$store.dispatch('addDev', formData);
+        this.$router.replace('/devs');
+      },
     }
 }
 </script>

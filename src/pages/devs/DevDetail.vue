@@ -37,7 +37,7 @@ export default {
         }
     },
     created() {
-        this.selectedDev = this.$store.getters.data.find(dev => dev.id === this.id);
+        this.selectedDev = this.$store.getters.devs.find(dev => dev.id === this.id);
     },
     computed: {
         fullName() {

@@ -8,7 +8,7 @@
                 <base-button mode="button">
                     Refresh
                 </base-button>
-                <base-button link to="/register" mode="button-two">
+                <base-button v-if="!isDev" link to="/register" mode="button-two">
                     Register as DEV
                 </base-button>
             </div>
@@ -46,8 +46,11 @@ export default {
         }
     },
     computed: {
+        isDev () {
+            return this.$store.getters.isDev;
+        },
         filteredDevs() {
-            const devs = this.$store.getters.data;
+            const devs = this.$store.getters.devs;
             return devs.filter(dev => {
                 if(this.activeFilters.frontend && dev.areas.includes('frontend')) {
                     return true
