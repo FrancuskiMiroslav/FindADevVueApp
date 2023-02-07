@@ -5,7 +5,7 @@
     <section>
         <base-card>
             <div class="controls">
-                <base-button mode="button">
+                <base-button mode="button" @click="loadDevs">
                     Refresh
                 </base-button>
                 <base-button v-if="!isDev" link to="/register" mode="button-two">
@@ -71,9 +71,16 @@ export default {
             return this.$store.getters.hasData;
         }
     },
+    created() {
+        this.loadDevs()
+    },
     methods: {
         setFilters(updatedFilters) {
             this.activeFilters = updatedFilters;
+        },
+
+        loadDevs() {
+            this.$store.dispatch('loadDevsFromServer');
         }
     }
 }

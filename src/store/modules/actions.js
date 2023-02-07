@@ -36,5 +36,32 @@ export default {
         };
 
         context.commit('addRequest', newRequest)
+    },
+
+    async loadDevsFromServer(context, payload) {
+        const response = await fetch(`https://findadevvueapp-bce25-default-rtdb.europe-west1.firebasedatabase.app/devs.json`);
+
+        const data = await response.json();
+
+        if(!response.ok) {
+            // error...
+        }
+
+        const devs = [];
+
+        for(const key in data) {
+            const dev = {
+                id: key,
+                firstName: data[key].firstName,
+                lastName: data[key].lastName,
+                description: data[key].description,
+                hourlyRate: data[key].hourlyRate,
+                areas: data[key].areas,
+            };
+
+            devs.push(dev);
+        }
+
+        context.commit('setDataFromServer', devs)
     }
 };
