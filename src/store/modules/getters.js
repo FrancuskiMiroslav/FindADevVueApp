@@ -11,5 +11,13 @@ export default {
         const devs = getters.devs;
         const userId = rootGetters.userId;
         return devs.some(dev => dev.id === userId);
+    },
+
+    requests(state) {
+        return state.requests
+    },
+
+    hasRequests(state) {
+        return state.requests && state.requests.length > 0
     }
 };
