@@ -1,7 +1,8 @@
 export default {
-    addDev(context, formData) {
+    async addDev(context, formData) {
+        const userId = context.rootGetters.userId;
+
         const devData = {
-            id: context.rootGetters.userId,
             firstName: formData.firstName,
             lastName: formData.lastName,
             description: formData.description,
@@ -9,7 +10,21 @@ export default {
             areas: formData.areas,
         };
 
-        context.commit('addDev', devData);
+        const response = await fetch(`https://findadevvueapp-bce25-default-rtdb.europe-west1.firebasedatabase.app/devs/${userId}.json`, {
+            method: 'PUT',
+            body: JSON.stringify(devData)
+        });
+
+        // const data = await response.json();
+
+        if(!response.ok) {
+            // error...
+        }
+
+        context.commit('addDev', {
+            ...devData,
+            id: userId
+        });
     },
 
     contactDev(context, payload) {
