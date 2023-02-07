@@ -13,11 +13,12 @@ export default {
         return devs.some(dev => dev.id === userId);
     },
 
-    requests(state) {
-        return state.requests
+    requests(state, getters, rootState, rootGetters) {
+        const devId = rootGetters.userId;
+        return state.requests.filter(req => req.devId === devId);
     },
 
-    hasRequests(state) {
-        return state.requests && state.requests.length > 0
+    hasRequests(state, getters) {
+        return getters.requests && getters.requests.length > 0;
     }
 };
