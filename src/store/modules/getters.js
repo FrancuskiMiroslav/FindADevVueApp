@@ -20,5 +20,15 @@ export default {
 
     hasRequests(state, getters) {
         return getters.requests && getters.requests.length > 0;
+    },
+
+    checkUpdateDataFromServer(state) {
+        const lastFetch = state.lastFetch;
+        if(!lastFetch) {
+            return true;
+        }
+
+        const currentTimestamp = new Date().getTime();
+        return (currentTimestamp - lastFetch) / 1000 > 120;
     }
 };

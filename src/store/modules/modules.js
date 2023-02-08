@@ -5,18 +5,10 @@ import getters from './getters.js';
 export default {
     state() {
         return {
+            lastFetch: null,
             devs: [
                 {
                   id: 'c1',
-                  firstName: 'Miroslav',
-                  lastName: 'Francuski',
-                  areas: ['frontend'],
-                  description:
-                    "I'm Miroslav and I am a self-taught frontend web developer with a flair for creating elegant solutions in the least amount of time. I feel most comfortable when I am coding from scratch.",
-                  hourlyRate: 30
-                },
-                {
-                  id: 'c2',
                   firstName: 'Jane',
                   lastName: 'Doe',
                   areas: ['backend'],
@@ -25,7 +17,7 @@ export default {
                   hourlyRate: 30
                 },
                 {
-                  id: 'c3',
+                  id: 'c2',
                   firstName: 'John',
                   lastName: 'Marston',
                   areas: ['frontend', 'backend', 'fullstack'],

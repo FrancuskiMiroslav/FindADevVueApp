@@ -71,7 +71,7 @@ export default {
                 userEmail: data[key].userEmail,
                 message: data[key.message]
             };
-            
+
             requests.push(request);
         }
 
@@ -81,6 +81,10 @@ export default {
     },
 
     async loadDevsFromServer(context, payload) {
+        if(!payload.forceRefresh && !context.getters.checkUpdateDataFromServer) {
+            return;
+        }
+
         const response = await fetch(`https://findadevvueapp-bce25-default-rtdb.europe-west1.firebasedatabase.app/devs.json`);
 
         const data = await response.json();
@@ -105,6 +109,7 @@ export default {
             devs.push(dev);
         }
 
-        context.commit('setDataFromServer', devs)
+        context.commit('setDataFromServer', devs);
+        context.commit('setFetchTimestamp');
     }
 };

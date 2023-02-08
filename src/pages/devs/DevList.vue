@@ -12,9 +12,10 @@
     <section>
         <base-card>
             <div class="controls">
-                <base-button mode="button" @click="loadDevs">
+                <base-button mode="button" @click="loadDevs(true)">
                     Refresh
                 </base-button>
+                <p>will auto refresh every 2min.</p>
                 <base-button v-if="!isDev && !isLoading" link to="/register" mode="button-two">
                     Register as DEV
                 </base-button>
@@ -92,10 +93,10 @@ export default {
             this.activeFilters = updatedFilters;
         },
 
-        async loadDevs() {
+        async loadDevs(refresh = false) {
             this.isLoading = true;
             try {
-                await this.$store.dispatch('loadDevsFromServer');
+                await this.$store.dispatch('loadDevsFromServer', { forceRefresh: refresh });
             } catch (error) {
                 this.error = error.message || 'Something went wrong'
             }
