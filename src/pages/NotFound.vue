@@ -1,11 +1,13 @@
 <template>
-    <header>
-      Not found page
-    </header>
-  
-    <main>
-  
-    </main>
+    <div>
+      <header>
+        Not found page
+      </header>
+    
+      <main>
+    
+      </main>
+    </div>
 </template>
   
   <script setup>

@@ -1,41 +1,43 @@
 <template>
-    <base-dialog 
+    <div>
+        <base-dialog 
         :show="!!error" 
         title="An error occured!"
         @close="handleError"
-    >
-        <p>{{ error }}</p>
-    </base-dialog>
-    <section>
-        <dev-filter @change-filter="setFilters"></dev-filter>
-    </section>
-    <section>
-        <base-card>
-            <div class="controls">
-                <base-button mode="button" @click="loadDevs(true)">
-                    Refresh
-                </base-button>
-                <p>will auto refresh every 2min.</p>
-                <base-button v-if="!isDev && !isLoading" link to="/register" mode="button-two">
-                    Register as DEV
-                </base-button>
-            </div>
-            <div v-if="isLoading">
-                <base-spinner></base-spinner>
-            </div>
-            <ul v-else-if="hasDevs">
-                <dev-item v-for="dev in filteredDevs" 
-                    :key="dev.id"
-                    :id="dev.id"
-                    :first-name="dev.firstName"
-                    :last-name="dev.lastName"
-                    :rate="dev.hourlyRate"
-                    :areas="dev.areas"
-                ></dev-item>
-            </ul>
-            <h3 v-else>No DEVs found.</h3>
-        </base-card>
-    </section>
+        >
+            <p>{{ error }}</p>
+        </base-dialog>
+        <section>
+            <dev-filter @change-filter="setFilters"></dev-filter>
+        </section>
+        <section>
+            <base-card>
+                <div class="controls">
+                    <base-button mode="button" @click="loadDevs(true)">
+                        Refresh
+                    </base-button>
+                    <p>will auto refresh every 2min.</p>
+                    <base-button v-if="!isDev && !isLoading" link to="/register" mode="button-two">
+                        Register as DEV
+                    </base-button>
+                </div>
+                <div v-if="isLoading">
+                    <base-spinner></base-spinner>
+                </div>
+                <ul v-else-if="hasDevs">
+                    <dev-item v-for="dev in filteredDevs" 
+                        :key="dev.id"
+                        :id="dev.id"
+                        :first-name="dev.firstName"
+                        :last-name="dev.lastName"
+                        :rate="dev.hourlyRate"
+                        :areas="dev.areas"
+                    ></dev-item>
+                </ul>
+                <h3 v-else>No DEVs found.</h3>
+            </base-card>
+        </section>
+    </div>
 </template>
 
 <script>
