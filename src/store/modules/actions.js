@@ -44,7 +44,8 @@ export default {
         const data = await response.json();
 
         if(!response.ok) {
-            // error...
+            const error = new Error(response.message || 'Failed to fetch data');
+            throw error;
         }
 
         const devs = [];

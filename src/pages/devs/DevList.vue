@@ -1,4 +1,11 @@
 <template>
+    <base-dialog 
+        :show="!!error" 
+        title="An error occured!"
+        @close="handleError"
+    >
+        <p>{{ error }}</p>
+    </base-dialog>
     <section>
         <dev-filter @change-filter="setFilters"></dev-filter>
     </section>
@@ -33,6 +40,7 @@
 <script>
 import DevItem from '../../components/DevItem.vue';
 import DevFilter from '../../components/DevFilter.vue';
+import { handleError } from 'vue';
 
 export default {
     components: {
@@ -47,6 +55,7 @@ export default {
                 fullstack: true,
             },
             isLoading: false,
+            error: null,
         }
     },
     computed: {
@@ -85,8 +94,16 @@ export default {
 
         async loadDevs() {
             this.isLoading = true;
-            await this.$store.dispatch('loadDevsFromServer');
+            try {
+                await this.$store.dispatch('loadDevsFromServer');
+            } catch (error) {
+                this.error = error.message || 'Something went wrong'
+            }
             this.isLoading = false;
+        },
+
+        handleError() {
+            this.error = null;
         }
     }
 }
