@@ -69,7 +69,7 @@ export default {
                 id: key,
                 devId: devId,
                 userEmail: data[key].userEmail,
-                message: data[key.message]
+                message: data[key].message
             };
 
             requests.push(request);

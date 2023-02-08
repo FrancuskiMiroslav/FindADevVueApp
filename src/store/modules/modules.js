@@ -26,9 +26,7 @@ export default {
                   hourlyRate: 30
                 }
               ],
-          requests: [
-            
-          ],
+          requests: [],
         }
     },
     mutations,

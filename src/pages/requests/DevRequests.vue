@@ -16,7 +16,7 @@
                 </header>
                 <base-spinner v-if="isLoading"></base-spinner>
                 <ul v-else-if="hasRequests && !isLoading">
-                    <request-item v-for="request in recievedRequest" 
+                    <request-item class="requestItem" v-for="request in recievedRequest" 
                         :key="request.id"
                         :email="request.userEmail"
                         :message="request.message"
