@@ -8,11 +8,14 @@
                 <base-button mode="button" @click="loadDevs">
                     Refresh
                 </base-button>
-                <base-button v-if="!isDev" link to="/register" mode="button-two">
+                <base-button v-if="!isDev && !isLoading" link to="/register" mode="button-two">
                     Register as DEV
                 </base-button>
             </div>
-            <ul v-if="hasDevs">
+            <div v-if="isLoading">
+                <base-spinner></base-spinner>
+            </div>
+            <ul v-else-if="hasDevs">
                 <dev-item v-for="dev in filteredDevs" 
                     :key="dev.id"
                     :id="dev.id"
@@ -43,6 +46,7 @@ export default {
                 backend: true,
                 fullstack: true,
             },
+            isLoading: false,
         }
     },
     computed: {
@@ -68,7 +72,7 @@ export default {
             })
         },
         hasDevs() {
-            return this.$store.getters.hasData;
+            return !this.isLoading && this.$store.getters.hasData;
         }
     },
     created() {
@@ -79,8 +83,10 @@ export default {
             this.activeFilters = updatedFilters;
         },
 
-        loadDevs() {
-            this.$store.dispatch('loadDevsFromServer');
+        async loadDevs() {
+            this.isLoading = true;
+            await this.$store.dispatch('loadDevsFromServer');
+            this.isLoading = false;
         }
     }
 }
