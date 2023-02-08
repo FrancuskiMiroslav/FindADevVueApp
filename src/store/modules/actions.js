@@ -27,15 +27,57 @@ export default {
         });
     },
 
-    contactDev(context, payload) {
+    async contactDev(context, payload) {
         const newRequest = {
-            id: new Date().toISOString(),
-            devId: payload.devId,
             userEmail: payload.email,
             message: payload.message,
         };
 
-        context.commit('addRequest', newRequest)
+        const response = await fetch(`https://findadevvueapp-bce25-default-rtdb.europe-west1.firebasedatabase.app/requests/${payload.devId}.json`, {
+            method: 'POST',
+            body: JSON.stringify(newRequest)
+        });
+
+        const data = response.json();
+
+        if(!response.ok) {
+            const error = new Error(response.message || 'Failed to send request.');
+            throw error;
+        }
+
+        newRequest.id = data.name;
+        newRequest.devId = payload.devId;
+
+        context.commit('addRequest', newRequest);
+    },
+
+    async fetchRquestsFromServer(context) {
+        const devId = context.rootGetters.userId;
+        const response = await fetch(`https://findadevvueapp-bce25-default-rtdb.europe-west1.firebasedatabase.app/requests/${devId}.json`);
+
+        const data = await response.json();
+
+        if(!response.ok) {
+            const error = new Error(response.message || 'Failed to fetch requests from server.');
+            throw error
+        }
+
+        const requests = [];
+
+        for (const key in data) {
+            const request = {
+                id: key,
+                devId: devId,
+                userEmail: data[key].userEmail,
+                message: data[key.message]
+            };
+            
+            requests.push(request);
+        }
+
+        
+
+        context.commit('setRequests', requests)
     },
 
     async loadDevsFromServer(context, payload) {

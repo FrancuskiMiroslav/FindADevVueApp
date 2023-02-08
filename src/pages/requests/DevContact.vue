@@ -40,7 +40,6 @@ export default {
         });
 
         this.$router.replace('/devs');
-        
       }
     }
 }

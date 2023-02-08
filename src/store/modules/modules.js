@@ -25,7 +25,7 @@ export default {
                   hourlyRate: 30
                 },
                 {
-                  id: 'c2',
+                  id: 'c3',
                   firstName: 'John',
                   lastName: 'Marston',
                   areas: ['frontend', 'backend', 'fullstack'],

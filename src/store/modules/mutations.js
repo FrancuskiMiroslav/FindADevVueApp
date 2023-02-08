@@ -9,5 +9,9 @@ export default {
 
     setDataFromServer(state, payload) {
         state.devs = payload
+    },
+
+    setRequests(state, payload) {
+        state.requests = payload
     }
 };
