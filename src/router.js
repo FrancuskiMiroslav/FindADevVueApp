@@ -5,6 +5,7 @@ import DevList from './pages/devs/DevList.vue';
 import DevRegistration from './pages/devs/DevRegistration.vue';
 import DevContact from './pages/requests/DevContact.vue';
 import DevRequests from './pages/requests/DevRequests.vue';
+import UserAuth from './pages/auth/UserAuth.vue'
 
 import NotFound from './pages/NotFound.vue';
 
@@ -21,7 +22,8 @@ const router = createRouter({
         ]},
         { path: '/register', component: DevRegistration },
         { path: '/requests', component: DevRequests },
-
+        { path: '/auth', component: UserAuth },
+        
         { path: '/:notFound(.*)', component:NotFound } // not found route
     ],
 });
