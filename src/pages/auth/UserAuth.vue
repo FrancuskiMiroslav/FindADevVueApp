@@ -1,29 +1,41 @@
 <template>
-    <base-card>
-        <form action="" @submit.prevent="submitForm">
-            <div class="form-control">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" v-model.trim="email">
-            </div>
-            <div class="form-control">
-                <label for="password">Password</label>
-                <input type="password" id="password" v-model.trim="password">
-            </div>
-            <p v-if="!formIsValid">Please enter valid email and password must be at least 6 characters long</p>
-            <base-button class="button">{{ submitButtonCaption }}</base-button>
-            <base-button class="button-two" type="button" mode="flat" @click="switchAuthMode">{{ swithModeButtonCaption }}</base-button>
-        </form>
-    </base-card>
+    <div>
+        <base-dialog :show="!!error" title="An error occured..." @close="handleError">
+            <p>{{ error }}</p>
+        </base-dialog>
+        <base-dialog :show="isLoading" title="Authenticating..." fixed>
+            <base-spinner></base-spinner>
+        </base-dialog>
+        <base-card>
+            <form action="" @submit.prevent="submitForm">
+                <div class="form-control">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" v-model.trim="email">
+                </div>
+                <div class="form-control">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" v-model.trim="password">
+                </div>
+                <p v-if="!formIsValid">Please enter valid email and password must be at least 6 characters long</p>
+                <base-button class="button">{{ submitButtonCaption }}</base-button>
+                <base-button class="button-two" type="button" mode="flat" @click="switchAuthMode">{{ swithModeButtonCaption }}</base-button>
+            </form>
+        </base-card>
+    </div>
 </template>
 
 <script>
+import { handleError } from 'vue'
+
 export default {
     data() {
         return {
             email: '',
             password: '',
             formIsValid: true,
-            mode: 'login'
+            mode: 'login',
+            isLoading: false,
+            error: null,
         }
     },
 
@@ -46,7 +58,7 @@ export default {
     },  
 
     methods: {
-        submitForm() {
+        async submitForm() {
             this.formIsValid = true;
 
             if(this.email === '' || !this.email.includes('@') || this.password.length < 6){
@@ -54,14 +66,24 @@ export default {
                 return;
             }
 
-            if(this.mode === 'login') {
-                //...
-            } else {
-                this.$store.dispatch('signup', {
-                    email: this.email,
-                    password: this.password,
-                })
+            this.isLoading = true;
+
+            try {
+                if(this.mode === 'login') {
+                    //...
+                } else {
+                    await this.$store.dispatch('signup', {
+                        email: this.email,
+                        password: this.password,
+                    })
+                }
+            } catch (error) {
+                this.error = error.message || 'Failed to authenticate, please try later.';
             }
+
+            
+
+            this.isLoading = false;
         },
 
         switchAuthMode() {
@@ -71,6 +93,10 @@ export default {
                 this.mode = 'login';
             }
         },
+
+        handleError() {
+            this.error = null;
+        }
     }
 }
 </script>
