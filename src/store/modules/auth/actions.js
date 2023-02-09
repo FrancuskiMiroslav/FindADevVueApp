@@ -1,6 +1,6 @@
 export default {
     async login(context, payload) {
-        const apiKey = 'AIzaSyCk-leJXZaAZZS4UFhwHXUzFY4sFGltzw8'
+        const apiKey = import.meta.env.VITE_API_KEY
         const response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`, {
             method: 'POST',
             body: JSON.stringify({
@@ -26,7 +26,7 @@ export default {
     },
 
     async signup(context, payload) {
-        const apiKey = 'AIzaSyCk-leJXZaAZZS4UFhwHXUzFY4sFGltzw8'
+        const apiKey = import.meta.env.VITE_API_KEY
         const response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`, {
             method: 'POST',
             body: JSON.stringify({
