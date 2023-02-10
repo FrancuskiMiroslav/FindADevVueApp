@@ -5,7 +5,8 @@ import DevList from './pages/devs/DevList.vue';
 import DevRegistration from './pages/devs/DevRegistration.vue';
 import DevContact from './pages/requests/DevContact.vue';
 import DevRequests from './pages/requests/DevRequests.vue';
-import UserAuth from './pages/auth/UserAuth.vue'
+import UserAuth from './pages/auth/UserAuth.vue';
+import store from './store/store.js';
 
 import NotFound from './pages/NotFound.vue';
 
@@ -20,12 +21,22 @@ const router = createRouter({
             children: [
             { path: 'contact', component: DevContact }, // /devs/id/contact
         ]},
-        { path: '/register', component: DevRegistration },
-        { path: '/requests', component: DevRequests },
-        { path: '/auth', component: UserAuth },
+        { path: '/register', component: DevRegistration, meta: { requiersAuth: true } },
+        { path: '/requests', component: DevRequests, meta: { requiersAuth: true } },
+        { path: '/auth', component: UserAuth, meta: { requiersUnauth: true } },
         
         { path: '/:notFound(.*)', component:NotFound } // not found route
     ],
 });
+
+router.beforeEach(function(to, from, next) { //global navigation guard to improve UX and prevent user from visiting pages when they are not possible
+    if(to.meta.requiersAuth && !store.getters.isAuthenticated) {
+        next('/auth');
+    } else if (to.meta.requiersUnauth && store.getters.isAuthenticated) {
+        next('/devs');
+    } else {
+        next();
+    }
+})
 
 export default router

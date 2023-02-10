@@ -17,7 +17,7 @@
                         Refresh
                     </base-button>
                     <p>will auto refresh every 2min.</p>
-                    <base-button link to="/auth" v-if="!isLoggedIn" class="button-two">Login</base-button>
+                    <base-button link to="/auth?redirect=register" v-if="!isLoggedIn" class="button-two">Login to Register as a Dev</base-button>
                     <base-button v-if="isLoggedIn && !isDev && !isLoading" link to="/register" mode="button-two">
                         Register as DEV
                     </base-button>

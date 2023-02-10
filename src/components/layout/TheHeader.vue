@@ -35,6 +35,7 @@ export default {
     methods: {
         logout() {
             this.$store.dispatch('logout'); // dispatching logout actions
+            this.$router.replace('/devs'); // then we just move to another page without option to go back with replace method
         }
     }
 }
