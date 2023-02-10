@@ -18,7 +18,7 @@ export default {
     async auth(context, payload){
         const apiKey = import.meta.env.VITE_API_KEY
         const mode = payload.mode;
-        const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`
+        let url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`
 
         if(mode === 'signup') {
             url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`
