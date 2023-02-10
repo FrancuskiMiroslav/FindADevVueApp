@@ -50,4 +50,12 @@ export default {
             tokenExpiration: responseData.expiresIn
         })
     },
+
+    logout(context) {
+        context.commit('setUser', {
+            token: null,
+            userId: null,
+            tokenExpiration: null
+        }) // since this is action we only reset our mutation
+    }
 };
