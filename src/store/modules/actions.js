@@ -10,7 +10,9 @@ export default {
             areas: formData.areas,
         };
 
-        const response = await fetch(`https://findadevvueapp-bce25-default-rtdb.europe-west1.firebasedatabase.app/devs/${userId}.json`, {
+        const token = context.rootGetters.token;
+
+        const response = await fetch(`https://findadevvueapp-bce25-default-rtdb.europe-west1.firebasedatabase.app/devs/${userId}.json?auth=${token}`, {
             method: 'PUT',
             body: JSON.stringify(devData)
         });
@@ -53,7 +55,8 @@ export default {
 
     async fetchRquestsFromServer(context) {
         const devId = context.rootGetters.userId;
-        const response = await fetch(`https://findadevvueapp-bce25-default-rtdb.europe-west1.firebasedatabase.app/requests/${devId}.json`);
+        const token = context.rootGetters.token;
+        const response = await fetch(`https://findadevvueapp-bce25-default-rtdb.europe-west1.firebasedatabase.app/requests/${devId}.json?auth=${token}`);
 
         const data = await response.json();
 
