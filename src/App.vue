@@ -17,6 +17,20 @@ export default {
 
   created() {
     this.$store.dispatch('checkLocalStorageToAutoLogin');
+  },
+
+  computed: {
+    didAutoLogout() {
+      return this.$store.getters.didAutoLogout;
+    } 
+  },
+
+  watch: {
+    didAutoLogout(curValue, oldValue) {
+      if(curValue && curValue !== oldValue) {
+        this.$router.replace('/devs');
+      }
+    }
   }
 }
 </script>
