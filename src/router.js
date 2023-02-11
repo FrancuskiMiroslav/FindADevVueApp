@@ -1,14 +1,21 @@
+import { defineAsyncComponent } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
-import DevDetail from './pages/devs/DevDetail.vue';
+// import DevDetail from './pages/devs/DevDetail.vue';
 import DevList from './pages/devs/DevList.vue';
-import DevRegistration from './pages/devs/DevRegistration.vue';
-import DevContact from './pages/requests/DevContact.vue';
-import DevRequests from './pages/requests/DevRequests.vue';
-import UserAuth from './pages/auth/UserAuth.vue';
+// import DevRegistration from './pages/devs/DevRegistration.vue';
+// import DevContact from './pages/requests/DevContact.vue';
+// import DevRequests from './pages/requests/DevRequests.vue';
+// import UserAuth from './pages/auth/UserAuth.vue';
 import store from './store/store.js';
 
 import NotFound from './pages/NotFound.vue';
+
+const DevDetail = defineAsyncComponent(() => import('./pages/devs/DevDetail.vue'));
+const DevRegistration = defineAsyncComponent(() => import('./pages/devs/DevRegistration.vue'));
+const DevContact = defineAsyncComponent(() => import('./pages/requests/DevContact.vue'));
+const DevRequests = defineAsyncComponent(() => import('./pages/requests/DevRequests.vue'));
+const UserAuth = defineAsyncComponent(() => import('./pages/auth/UserAuth.vue'));
 
 const router = createRouter({
     history: createWebHistory(),
